@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Textile LCA Model</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        form { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; }
+        input[type="text"], input[type="number"], select { margin-bottom: 10px; padding: 8px; width: 300px; box-sizing: border-box; }
+        button { padding: 10px 15px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Textile LCA Model</h1>
+
+    <form method="post">
+         <label for="material">Material:</label>
+        <select id="material" name="material">
+            <option value="Cotton">Cotton</option>
+            <option value="Polyester">Polyester</option>
+            <option value="Linen">Linen</option>
+            <option value="Viscose">Viscose</option>
+            <option value="Recycled Cotton">Recycled Cotton</option>
+            <option value="Recycled Polyester">Recycled Polyester</option>
+        </select>
+
+        <label for="source">Source:</label>
+        <select id="source" name="source">
+            <option value="Conventional">Conventional</option>
+            <option value="Organic">Organic</option>
+            <option value="Recycled">Recycled</option>
+        </select>
+
+        <label for="spinning">Spinning Method:</label>
+        <select id="spinning" name="spinning">
+            <option value="Ring-Spun">Ring-Spun</option>
+            <option value="Open-End">Open-End</option>
+            <option value="Air-Jet">Air-Jet</option>
+        </select>
+
+        <label for="weaving">Weaving Method:</label>
+        <select id="weaving" name="weaving">
+            <option value="Woven">Woven</option>
+            <option value="Knitted">Knitted</option>
+        </select>
+
+          <label for="dyeing">Dyeing Method:</label>
+        <select id="dyeing" name="dyeing">
+           <option value="Conventional">Conventional</option>
+            <option value="Natural">Natural</option>
+             <option value="Solution Dyeing">Solution Dyeing</option>
+        </select>
+
+        <label for="finishing">Finishing Method:</label>
+        <select id="finishing" name="finishing">
+            <option value="Chemical">Chemical</option>
+            <option value="Mechanical">Mechanical</option>
+            <option value="None">None</option>
+        </select>
+
+
+         <label for="energy">Energy Source:</label>
+        <select id="energy" name="energy">
+            <option value="Fossil Fuels">Fossil Fuels</option>
+            <option value="Renewable">Renewable</option>
+            <option value="Mixed">Mixed</option>
+        </select>
+
+        <label for="transport_distance">Transport Distance (km):</label>
+        <input type="number" id="transport_distance" name="transport_distance" required>
+
+        <label for="transport_mode">Transport Mode:</label>
+        <select id="transport_mode" name="transport_mode">
+            <option value="Road">Road</option>
+            <option value="Sea">Sea</option>
+            <option value="Air">Air</option>
+        </select>
+
+         <label for="production_volume">Production Volume (kg):</label>
+        <input type="number" id="production_volume" name="production_volume" required>
+
+
+        <label for="recycled_content">Recycled Content (0-1):</label>
+         <input type="number" id="recycled_content" name="recycled_content" step="0.01" min="0" max="1" required>
+
+
+        <label for="water_consumption">Water Consumption (L/kg):</label>
+        <input type="number" id="water_consumption" name="water_consumption" required>
+
+        <label for="chemical_use">Chemical Use (kg/kg):</label>
+        <input type="number" id="chemical_use" name="chemical_use" required>
+
+        <button type="submit">Predict CO2 Emissions</button>
+    </form>
+
+    {% if prediction %}
+        <h2>Prediction:</h2>
+        <p>The estimated CO2 emissions are: {{ "%.2f"|format(prediction) }} kg CO2e</p>
+    {% endif %}
+    {% if error %}
+        <p style="color: red;">Error: {{ error }}</p>
+    {% endif %}
+</body>
+</html>
