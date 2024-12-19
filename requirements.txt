@@ -1,1 +1,5 @@
 Flask==2.3.2
+streamlit
+pandas
+numpy
+scikit-learn
