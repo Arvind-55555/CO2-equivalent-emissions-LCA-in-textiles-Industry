@@ -1,0 +1,1 @@
+# CO2-equivalent-emissions-LCA-in-textiles-Industry
